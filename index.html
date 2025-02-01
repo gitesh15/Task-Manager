@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Task Manager</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Navbar Styles */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 30px;
+        background-color: #2575fc;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar h1 {
+        font-size: 2rem;
+        color: white;
+        margin: 0;
+      }
+
+      .navbar ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+      }
+
+      .navbar ul li {
+        display: inline;
+      }
+
+      .navbar ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: color 0.3s;
+      }
+
+      .navbar ul li a:hover {
+        color: #ffeb3b;
+      }
+
+      /* Main Container */
+      .container {
+        background: #fff;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+        text-align: center;
+        animation: cardAnimation 1s ease-out forwards;
+        margin-top: 30px;
+        margin: 130px 0px 93px 10px;
+        height: 55vh;
+      }
+
+      @keyframes cardAnimation {
+        0% {
+          transform: scale(0.5);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      h2 {
+        font-size: 3.5rem;
+        color: #007bff;
+        margin: 13px 6px 55px 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      .form-step {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+
+      .form-step.active {
+        display: block;
+        opacity: 1;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 12px;
+        margin: 60px 0;
+        border-radius: 8px;
+        border: 2px solid #ddd;
+        font-size: 1.5rem;
+      }
+
+      button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        cursor: pointer;
+        border-radius: 8px;
+        font-size: 1.5rem;
+        transition: 0.3s;
+        margin: 19px 69px 14px 68px;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      .back-button {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 8px;
+        font-size: 1.5rem;
+        transition: 0.3s;
+        margin: 19px 69px 14px 68px;
+      }
+
+      .back-button:hover {
+        background-color: #5a6268;
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 8px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+
+      .progress-bar div {
+        height: 100%;
+        width: 0;
+        background-color: #007bff;
+        border-radius: 5px;
+        transition: width 0.5s ease-in-out;
+      }
+
+      /* Feature Section */
+      .feature-section {
+        display: flex;
+        justify-content: space-around;
+        padding: 50px 30px;
+        gap: 20px;
+        background: #fff;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-item {
+        text-align: center;
+        width: 30%;
+        padding: 20px;
+        border-radius: 10px;
+        background: #f9f9f9;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .feature-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .feature-item img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      .feature-item h3 {
+        font-size: 1.5rem;
+        color: #2575fc;
+        margin-top: 15px;
+      }
+
+      .feature-item p {
+        font-size: 1.1rem;
+        color: #666;
+        margin-top: 10px;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #007bff;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        width: 96%;
+        position: relative;
+        bottom: 0;
+      }
+
+      footer a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      footer a:hover {
+        color: #fbc2eb;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar Section -->
+    <!-- <div class="navbar">
+      <h1>TaskManager</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tasks.html">Tasks</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div> -->
+    <!-- Feature Section -->
+    <!-- <div class="feature-section">
+      <div class="feature-item">
+        <img src="https://via.placeholder.com/400x250" alt="Feature 1" />
+        <h3>Manage Tasks Efficiently</h3>
+        <p>
+          Keep track of all your tasks, prioritize them, and never miss a
+          deadline.
+        </p>
+      </div>
+      <div class="feature-item">
+        <img src="https://via.placeholder.com/400x250" alt="Feature 2" />
+        <h3>Visual Progress</h3>
+        <p>
+          Visualize your progress with a clean, intuitive interface that makes
+          task management a breeze.
+        </p>
+      </div>
+      <div class="feature-item">
+        <img src="https://via.placeholder.com/400x250" alt="Feature 3" />
+        <h3>Easy Customization</h3>
+        <p>
+          Customize your task list with priority levels, deadlines, and more to
+          suit your needs.
+        </p>
+      </div>
+    </div> -->
+
+    <!-- Add Task Section -->
+    <div id="add-task" class="container">
+      <h2>Daily Task Manager</h2>
+      <!-- Progress Bar -->
+      <div class="progress-bar">
+        <div id="progress" style="width: 14%"></div>
+      </div>
+
+      <!-- Form Steps -->
+      <div id="step1" class="form-step active">
+        <select id="month">
+          <option value="" disabled selected>Select or type a month</option>
+          <option value="January">January</option>
+          <option value="February">February</option>
+          <option value="March">March</option>
+          <option value="April">April</option>
+          <option value="May">May</option>
+          <option value="June">June</option>
+          <option value="July">July</option>
+          <option value="August">August</option>
+          <option value="September">September</option>
+          <option value="October">October</option>
+          <option value="November">November</option>
+          <option value="December">December</option>
+          <option value="other">Other</option>
+        </select>
+        <button onclick="nextStep(2)">Next</button>
+        <button onclick="window.location.href='tasks.html'">
+          See All Tasks
+        </button>
+      </div>
+
+      <div id="step2" class="form-step">
+        <select id="week">
+          <option value="" disabled selected>Select or type a week</option>
+          <option value="Week 1">Week 1</option>
+          <option value="Week 2">Week 2</option>
+          <option value="Week 3">Week 3</option>
+          <option value="Week 4">Week 4</option>
+          <option value="other">Other</option>
+        </select>
+        <button onclick="nextStep(3)">Next</button>
+        <button class="back-button" onclick="prevStep(1)">Back</button>
+      </div>
+
+      <div id="step3" class="form-step">
+        <input
+          type="text"
+          id="dueDate"
+          placeholder="Type the due date (e.g., 2025-02-01)"
+        />
+        <button onclick="nextStep(4)">Next</button>
+        <button class="back-button" onclick="prevStep(2)">Back</button>
+      </div>
+
+      <div id="step4" class="form-step">
+        <input type="text" id="taskName" placeholder="Task Name" />
+        <button onclick="nextStep(5)">Next</button>
+        <button class="back-button" onclick="prevStep(3)">Back</button>
+      </div>
+
+      <div id="step5" class="form-step">
+        <select id="day">
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+          <option value="Saturday">Saturday</option>
+          <option value="Sunday">Sunday</option>
+        </select>
+        <button onclick="nextStep(6)">Next</button>
+        <button class="back-button" onclick="prevStep(4)">Back</button>
+      </div>
+
+      <div id="step6" class="form-step">
+        <select id="priority">
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
+        <button onclick="nextStep(7)">Next</button>
+        <button class="back-button" onclick="prevStep(5)">Back</button>
+      </div>
+
+      <div id="step7" class="form-step">
+        <select id="status">
+          <option value="Pending">Pending</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+        </select>
+        <button onclick="submitTask()">Submit</button>
+        <button class="back-button" onclick="prevStep(6)">Back</button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <!-- <footer id="footer">
+      <p>© 2025 Daily Task Manager. All rights reserved.</p>
+      <p>
+        Contact us:
+        <a href="mailto:support@taskmanager.com">support@taskmanager.com</a>
+      </p>
+    </footer> -->
+
+    <script>
+      function nextStep(step) {
+        // Update progress bar
+        let progress = (step - 1) * 14;
+        document.getElementById("progress").style.width = `${progress}%`;
+
+        // Hide all steps and show the next one
+        document
+          .querySelectorAll(".form-step")
+          .forEach((el) => el.classList.remove("active"));
+        document.getElementById(`step${step}`).classList.add("active");
+      }
+
+      function prevStep(step) {
+        // Update progress bar
+        let progress = (step - 1) * 14;
+        document.getElementById("progress").style.width = `${progress}%`;
+
+        // Hide all steps and show the previous one
+        document
+          .querySelectorAll(".form-step")
+          .forEach((el) => el.classList.remove("active"));
+        document.getElementById(`step${step}`).classList.add("active");
+      }
+
+      function submitTask() {
+        const month = document.getElementById("month").value;
+        const week = document.getElementById("week").value;
+        const dueDate = document.getElementById("dueDate").value;
+        const taskName = document.getElementById("taskName").value;
+        const day = document.getElementById("day").value;
+        const priority = document.getElementById("priority").value;
+        const status = document.getElementById("status").value;
+
+        if (!taskName || !dueDate || !month || !week) {
+          alert("Please fill all fields");
+          return;
+        }
+
+        const task = { month, week, dueDate, taskName, day, priority, status };
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        tasks.push(task);
+        tasks.sort(
+          (a, b) =>
+            a.month.localeCompare(b.month) ||
+            a.week.localeCompare(b.week) ||
+            a.dueDate.localeCompare(b.dueDate) ||
+            a.taskName.localeCompare(b.taskName)
+        );
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        window.location.href = "tasks.html";
+      }
+    </script>
+  </body>
+</html>
