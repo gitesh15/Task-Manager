@@ -16,7 +16,6 @@
         align-items: center;
       }
 
-      /* Navbar Styles */
       .navbar {
         display: flex;
         justify-content: space-between;
@@ -54,7 +53,6 @@
         color: #ffeb3b;
       }
 
-      /* Main Container */
       .container {
         background: #fff;
         padding: 40px;
@@ -157,7 +155,6 @@
         transition: width 0.5s ease-in-out;
       }
 
-      /* Feature Section */
       .feature-section {
         display: flex;
         justify-content: space-around;
@@ -200,7 +197,6 @@
         margin-top: 10px;
       }
 
-      /* Footer */
       footer {
         background-color: #007bff;
         color: white;
@@ -223,52 +219,12 @@
     </style>
   </head>
   <body>
-    <!-- Navbar Section -->
-    <!-- <div class="navbar">
-      <h1>TaskManager</h1>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="tasks.html">Tasks</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
-    </div> -->
-    <!-- Feature Section -->
-    <!-- <div class="feature-section">
-      <div class="feature-item">
-        <img src="https://via.placeholder.com/400x250" alt="Feature 1" />
-        <h3>Manage Tasks Efficiently</h3>
-        <p>
-          Keep track of all your tasks, prioritize them, and never miss a
-          deadline.
-        </p>
-      </div>
-      <div class="feature-item">
-        <img src="https://via.placeholder.com/400x250" alt="Feature 2" />
-        <h3>Visual Progress</h3>
-        <p>
-          Visualize your progress with a clean, intuitive interface that makes
-          task management a breeze.
-        </p>
-      </div>
-      <div class="feature-item">
-        <img src="https://via.placeholder.com/400x250" alt="Feature 3" />
-        <h3>Easy Customization</h3>
-        <p>
-          Customize your task list with priority levels, deadlines, and more to
-          suit your needs.
-        </p>
-      </div>
-    </div> -->
-
-    <!-- Add Task Section -->
     <div id="add-task" class="container">
       <h2>Daily Task Manager</h2>
-      <!-- Progress Bar -->
       <div class="progress-bar">
         <div id="progress" style="width: 14%"></div>
       </div>
 
-      <!-- Form Steps -->
       <div id="step1" class="form-step active">
         <select id="month">
           <option value="" disabled selected>Select or type a month</option>
@@ -286,10 +242,10 @@
           <option value="December">December</option>
           <option value="other">Other</option>
         </select>
-        <button onclick="nextStep(2)">Next</button>
         <button onclick="window.location.href='tasks.html'">
           See All Tasks
         </button>
+        <button onclick="nextStep(2)">Next</button>
       </div>
 
       <div id="step2" class="form-step">
@@ -301,8 +257,9 @@
           <option value="Week 4">Week 4</option>
           <option value="other">Other</option>
         </select>
-        <button onclick="nextStep(3)">Next</button>
+
         <button class="back-button" onclick="prevStep(1)">Back</button>
+        <button onclick="nextStep(3)">Next</button>
       </div>
 
       <div id="step3" class="form-step">
@@ -311,14 +268,14 @@
           id="dueDate"
           placeholder="Type the due date (e.g., 2025-02-01)"
         />
-        <button onclick="nextStep(4)">Next</button>
         <button class="back-button" onclick="prevStep(2)">Back</button>
+        <button onclick="nextStep(4)">Next</button>
       </div>
 
       <div id="step4" class="form-step">
         <input type="text" id="taskName" placeholder="Task Name" />
-        <button onclick="nextStep(5)">Next</button>
         <button class="back-button" onclick="prevStep(3)">Back</button>
+        <button onclick="nextStep(5)">Next</button>
       </div>
 
       <div id="step5" class="form-step">
@@ -331,8 +288,9 @@
           <option value="Saturday">Saturday</option>
           <option value="Sunday">Sunday</option>
         </select>
-        <button onclick="nextStep(6)">Next</button>
+
         <button class="back-button" onclick="prevStep(4)">Back</button>
+        <button onclick="nextStep(6)">Next</button>
       </div>
 
       <div id="step6" class="form-step">
@@ -341,8 +299,8 @@
           <option value="Medium">Medium</option>
           <option value="Low">Low</option>
         </select>
-        <button onclick="nextStep(7)">Next</button>
         <button class="back-button" onclick="prevStep(5)">Back</button>
+        <button onclick="nextStep(7)">Next</button>
       </div>
 
       <div id="step7" class="form-step">
@@ -351,27 +309,16 @@
           <option value="In Progress">In Progress</option>
           <option value="Completed">Completed</option>
         </select>
-        <button onclick="submitTask()">Submit</button>
         <button class="back-button" onclick="prevStep(6)">Back</button>
+        <button onclick="submitTask()">Submit</button>
       </div>
     </div>
 
-    <!-- Footer -->
-    <!-- <footer id="footer">
-      <p>© 2025 Daily Task Manager. All rights reserved.</p>
-      <p>
-        Contact us:
-        <a href="mailto:support@taskmanager.com">support@taskmanager.com</a>
-      </p>
-    </footer> -->
-
     <script>
       function nextStep(step) {
-        // Update progress bar
         let progress = (step - 1) * 14;
         document.getElementById("progress").style.width = `${progress}%`;
 
-        // Hide all steps and show the next one
         document
           .querySelectorAll(".form-step")
           .forEach((el) => el.classList.remove("active"));
@@ -379,11 +326,9 @@
       }
 
       function prevStep(step) {
-        // Update progress bar
         let progress = (step - 1) * 14;
         document.getElementById("progress").style.width = `${progress}%`;
 
-        // Hide all steps and show the previous one
         document
           .querySelectorAll(".form-step")
           .forEach((el) => el.classList.remove("active"));
